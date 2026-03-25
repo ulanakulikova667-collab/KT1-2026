@@ -1,262 +1,270 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <style>
-*{
-  margin: 0;
-  padding: 0;
-}
+    <meta charset="UTF-8">
+    <title>Мой магазин</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
-    header {
-      background-color: #2c3e50;
-      color: white;
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        body.dark {
+            background-color: black;
+            color: white;
+        }
+        body.dark header {
+            background-color: #333;
+        }
+        body.dark .card {
+            background-color: #444;
+            color: white;
+        }
+        header {
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      transition: transform 0.3s;
-    }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .logo:hover {
-      transform: scale(1.05);
-    }
+        .cart-count {
+            background-color: red;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 50%;
+        }
 
-    nav ul {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
+        .cover {
+            background-color: lightblue;
+            text-align: center;
+            padding: 50px 20px;
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding-bottom: 5px;
-      border-bottom: 2px solid transparent;
-    }
+        .cover h1 {
+            font-size: 36px;
+        }
 
-    nav a:hover {
-      color: #f1c40f;
-      border-bottom: 2px solid #f1c40f;
-    }
-    .cover {
-      background: linear-gradient(200deg, #3498db, #9b59b6);
-      color: white;
-      text-align: center;
-      padding: 50px;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+        .btn {
+            background-color: orange;
+            color: white;
+            padding: 10px 30px;
+            display: inline-block;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .products {
+            padding: 20px;
+            text-align: center;
+        }
 
-    .cover h1 {
-      font-size: 40px;
-      margin-bottom: 16px;
-      animation: fadeInDown 1s ease-out;
-    }
- .cover p {
-      font-size: 20px;
-      margin-bottom: 32px;
-    }
+        .card-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .btn {
-      display: inline-block;
-      background-color: #f1c40f;
-      color: #2c3e50;
-      padding: 10px 25px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .card {
+            border: 1px solid gray;
+            padding: 10px;
+            width: 250px;
+            background-color: white;
+        }
 
-    .btn:hover {
-      background-color: #e67e22;
-      color: white;
-    }
-    .products {
-      padding: 48px 32px;
-      background-color: #ecf0f1;
-      text-align: center;
-    }
+        .card img {
+            width: 100%;
+            height: 200px;
+        }
 
-    .products h2 {
-      margin-bottom: 32px;
-      font-size: 32px;
-    }
+        .card button {
+            margin: 5px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
 
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-.card {
-      background: white;
-      border-radius: 10px;
-      padding: 24px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .form-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-    }
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-    .card img {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
-      margin-bottom: 16px;
-      transition: transform 0.3s;
-    }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+        }
 
-    .card img:hover {
-      transform: rotate(5deg) scale(1.1);
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      margin-bottom: 16px;
-      color: #7f8c8d;
-    }
-
-    .card .btn-small {
-      background-color: #3498db;
-      color: white;
-      padding: 8px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .card .btn-small:hover {
-      background-color: #2980b9;
-    }
-    .info {
-      padding: 48px 32px;
-      background-color: #fff;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .info-text {
-      flex: 1 1 300px;
-    }
-
-    .info-text h2 {
-      margin-bottom: 16px;
-      font-size: 32px;
-    }
-
-    .info-text p {margin-bottom: 16px;
-      color: #555;
-    }
-
-    .info-image {
-      flex: 1 1 300px;
-      text-align: center;
-    }
-
-    .info-image img {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    footer {
-      background-color: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 24px;
-    }
-@media (max-width: 600px)
-{ .cover h1
-  { font-size: 28px:
-  }
-  
-  nav ul {
-    gap: 15px;
-  }
-}
-  </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мой лендинг</title>
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .counter-block {
+            text-align: center;
+            padding: 20px;
+            background-color: #e0e0e0;
+            margin: 20px;
+        }.counter-block button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+    </style>
 </head>
-  <body>
-  <div class="page">
+<body>
     <header>
-      <div class="logo">Мои Шампуни</div>
-      <nav>
-       <ul>
-          <li>Главная</li>
-          <li>Товары</li>
-          <li>О нас</li>
-        </ul>
-      </nav>
+        <div class="logo">Мой Магазин</div>
+        <nav>
+            <ul>
+                <li>Главная</li>
+                <li>Товары</li>
+                <li>Контакты</li>
+            </ul>
+        </nav>
+        <div style="display: flex; gap: 20px;">
+            <div class="cart">
+                🛒 <span class="cart-count" id="cartTotal">0</span>
+            </div>
+            <button id="themeButton">Темная тема</button>
+        </div>
     </header>
     <section class="cover">
-      <h1>Добро пожаловать!</h1>
-      <p>Лучшие товары по отличным ценам</p>
-      <div class="btn">Смотреть каталог</div>
+        <h1>Добро пожаловать!</h1>
+        <p>Лучшие товары здесь</p>
+        <div class="btn">Подробнее</div>
     </section>
     <section class="products">
-      <h2>Наши товары</h2>
-      <div class="card-grid">
-        <div class="card">
-          <img src="https://ir.ozone.ru/s3/multimedia-1-r/6937442595.jpg">
-          <h3>Товар 1</h3>
-          <p>Описание товара 1. Очень качественный и красивый.</p>
-          <a href="#" class="btn-small">Купить</a>
+        <h2>Наши товары</h2>
+        <div class="card-grid">
+          <div class="card">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-r/6937442595.jpg" alt="товар">
+                <h3>Шампунь 1</h3>
+                <p>Описание товара</p>
+                <div>
+                    <span id="count1">0</span>
+                    <button onclick="addToCart(1)">+</button>
+                    <button onclick="removeFromCart(1)">-</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-j/6930802351.jpg" alt="товар">
+                <h3>Шампунь 2</h3>
+                <p>Описание товара</p>
+                <div>
+                    <span id="count2">0</span>
+                    <button onclick="addToCart(2)">+</button>
+                    <button onclick="removeFromCart(2)">-</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://avatars.mds.yandex.net/get-mpic/5254518/2a0000019522fbec4a667e9b4ae618ca95ae/orig" alt="товар">
+                <h3>Шампунь 3</h3>
+                <p>Описание товара</p>
+                <div>
+                    <span id="count3">0</span>
+                    <button onclick="addToCart(3)">+</button>
+                    <button onclick="removeFromCart(3)">-</button>
+                </div>
+            </div>
         </div>
-        <div class="card">
-          <img src="https://ir.ozone.ru/s3/multimedia-1-j/6930802351.jpg">
-          <h3>Товар 2</h3>
-          <p>Описание товара 2. Современный дизайн и надежность.</p>
-          <a href="#" class="btn-small">Купить</a>
-        </div>
-        <div class="card">
-          <img src="https://avatars.mds.yandex.net/get-mpic/5254518/2a0000019522fbec4a667e9b4ae618ca95ae/orig">
-          <h3>Товар 3</h3>
-          <p>Описание товара 3. Хит продаж этого сезона.</p>
-          <a href="#" class="btn-small">Купить</a>
-        </div>
-      </div>
     </section>
-    <section class="info">
-      <div class="info-text">
-        <h2>О нашем магазине</h2>
-        <p>Мы работаем с 2020 года и предлагаем только проверенные товары. Наша команда заботится о каждом клиенте.</p>
-        <p>Быстрая доставка, удобная оплата, гарантия качества.</p>
-      </div>
-      <div class="info-image">
-        <img src="https://static.tildacdn.info/tild6264-3433-4064-b761-356261373635/photo.jpg">
-      </div>
-    </section
+    <section class="form-section">
+        <h2>Опрос</h2>
+        <form id="simpleForm">
+            <div class="form-group">
+                <label>1. Ваше имя:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>2. Ваш email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>3. Ваш возраст:</label>
+                <input type="number" id="age">
+            </div>
+            <div class="form-group">
+                <label>4. Ваш город:</label>
+                <input type="text" id="city">
+            </div>
+            <div class="form-group">
+                <label>5. Комментарий:</label>
+                <textarea id="comment" rows="3"></textarea>
+            </div>
+            
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
     <footer>
-      <p>Мои Шампуни 2025</p>
-    </footer>
-  </div>
+        <p>Мой Магазин 2025</p>
+    </footer><script>
+        let cart1 = 0, cart2 = 0, cart3 = 0;
+        function addToCart(product) {
+            if (product == 1) {
+                cart1++;
+                document.getElementById('count1').innerText = cart1;
+            } else if (product == 2) {
+                cart2++;
+                document.getElementById('count2').innerText = cart2;
+            } else if (product == 3) {
+                cart3++;
+                document.getElementById('count3').innerText = cart3;
+            }
+            updateTotal();
+        }
+        function removeFromCart(product) {
+            if (product == 1 && cart1 > 0) {
+                cart1--;
+                document.getElementById('count1').innerText = cart1;
+            } else if (product == 2 && cart2 > 0) {
+                cart2--;
+                document.getElementById('count2').innerText = cart2;
+            } else if (product == 3 && cart3 > 0) {
+                cart3--;
+              document.getElementById('count3').innerText = cart3;
+            }
+            updateTotal();
+        }    
+        function updateTotal() {
+            let total = cart1 + cart2 + cart3;
+            document.getElementById('cartTotal').innerText = total;
+        }
+        
+        let themeButton = document.getElementById('themeButton');
+        themeButton.onclick = function() {
+            document.body.classList.toggle('dark');
+            if(document.body.classList.contains('dark')) {
+                themeButton.innerText = 'Светлая тема';} 
+          else {
+                themeButton.innerText = 'Темная тема';}
+        
+        }
+       document.getElementById('simpleForm').onsubmit = function(e) {
+            e.preventDefault();
+            alert('Спасибо за ответы!');
+        }
+    </script>
 </body>
 </html>
